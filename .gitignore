@@ -1,0 +1,16 @@
+# קבצי מערכת הפעלה
+.DS_Store
+Thumbs.db
+desktop.ini
+ehthumbs.db
+
+# קבצים זמניים של עורכים
+*~
+*.swp
+*.swo
+.vscode/
+.idea/
+
+# גיבויים מקומיים
+*.bak
+*.tmp

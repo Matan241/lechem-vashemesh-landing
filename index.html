@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>לחם ושמש, מאפייה בהדר, חיפה</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+<header class="hero">
+  <p class="eyebrow">מאפייה שכונתית, שכונת הדר, חיפה</p>
+  <h1 class="hero__title">לחם ושמש</h1>
+  <p class="hero__tagline">אופים לחם מחמצת ומאפים, והכל נאפה באותו הבוקר.</p>
+</header>
+
+<div class="score" aria-hidden="true"></div>
+
+<main>
+
+  <section class="section about" aria-labelledby="about-title">
+    <h2 id="about-title">אודות המאפייה</h2>
+    <p>מאפיית לחם ושמש היא מאפייה קטנה בשכונת הדר בחיפה, פועלת מאז שנת 2019. אופים לחם מחמצת ומאפים, והכל נאפה באותו הבוקר. לאחרונה התחלנו לחלק את המאפים בבקרים גם ברחבי השכונה.</p>
+  </section>
+
+  <div class="score" aria-hidden="true"></div>
+
+  <section class="section photo">
+    <div class="photo-placeholder">
+      <span>תמונה תתווסף בהמשך</span>
+    </div>
+  </section>
+
+  <div class="score" aria-hidden="true"></div>
+
+  <section class="section menu" aria-labelledby="menu-title">
+    <h2 id="menu-title">מה יש אצלנו</h2>
+    <ul class="menu-list">
+      <li class="menu-list__item">
+        <span class="menu-list__name">לחם כפרי מחמצת</span>
+        <span class="menu-list__price">32 ₪</span>
+      </li>
+      <li class="menu-list__item">
+        <span class="menu-list__name">לחם שיפון</span>
+        <span class="menu-list__price">36 ₪</span>
+      </li>
+      <li class="menu-list__item">
+        <span class="menu-list__name">חלה <small>(בימי שישי בלבד)</small></span>
+        <span class="menu-list__price">28 ₪</span>
+      </li>
+      <li class="menu-list__item">
+        <span class="menu-list__name">בורקס גבינה <small>(ליחידה)</small></span>
+        <span class="menu-list__price">12 ₪</span>
+      </li>
+    </ul>
+  </section>
+
+  <section class="section delivery" aria-labelledby="delivery-title">
+    <p class="delivery__eyebrow">השירות החדש שלנו</p>
+    <h2 id="delivery-title">משלוחים בבקרים</h2>
+    <p class="delivery__lead">יוצאים לדרך בראשון בספטמבר.</p>
+    <dl class="delivery-details">
+      <div class="delivery-details__row">
+        <dt>ימים</dt>
+        <dd>ראשון עד שישי</dd>
+      </div>
+      <div class="delivery-details__row">
+        <dt>שעות המשלוח</dt>
+        <dd><span class="ltr-num">07:00</span> עד <span class="ltr-num">09:00</span></dd>
+      </div>
+      <div class="delivery-details__row">
+        <dt>אזור החלוקה</dt>
+        <dd>רחובות הרצל, מסדה, החלוץ, ביאליק, והסמטאות שביניהם</dd>
+      </div>
+      <div class="delivery-details__row">
+        <dt>הזמנה עד</dt>
+        <dd>השעה <span class="ltr-num">20:00</span> בערב שלפני</dd>
+      </div>
+      <div class="delivery-details__row">
+        <dt>מינימום הזמנה</dt>
+        <dd>40 ₪</dd>
+      </div>
+      <div class="delivery-details__row">
+        <dt>תשלום</dt>
+        <dd>בדלת, במזומן או בהעברה</dd>
+      </div>
+    </dl>
+  </section>
+
+  <div class="score" aria-hidden="true"></div>
+
+  <section class="section process" aria-labelledby="process-title">
+    <h2 id="process-title">איך זה עובד</h2>
+    <p>קמים בשעה <span class="ltr-num">4:00</span> לפנות בוקר, ואופים לפי ההזמנות שהתקבלו בערב הקודם.</p>
+    <h3>שעות החנות</h3>
+    <ul class="hours-list">
+      <li>ראשון עד חמישי, משעה <span class="ltr-num">07:00</span> עד שעה <span class="ltr-num">18:00</span></li>
+      <li>שישי, משעה <span class="ltr-num">06:00</span> עד שעה <span class="ltr-num">14:00</span></li>
+    </ul>
+  </section>
+
+  <div class="score" aria-hidden="true"></div>
+
+  <section class="section order-form" aria-labelledby="form-title">
+    <h2 id="form-title">השאירו פרטים להזמנה</h2>
+    <form class="form">
+      <label class="form__field">
+        <span>שם מלא</span>
+        <input type="text" name="name" autocomplete="name" required>
+      </label>
+      <label class="form__field">
+        <span>טלפון</span>
+        <input type="tel" name="phone" autocomplete="tel" required>
+      </label>
+      <label class="form__field">
+        <span>אימייל</span>
+        <input type="email" name="email" autocomplete="email">
+      </label>
+      <label class="form__field">
+        <span>מה תרצו להזמין</span>
+        <textarea name="message" rows="4"></textarea>
+      </label>
+      <button type="button" class="form__submit">שליחה</button>
+    </form>
+  </section>
+
+</main>
+
+<div class="score" aria-hidden="true"></div>
+
+<footer class="contact" aria-labelledby="contact-title">
+  <h2 id="contact-title">יצירת קשר</h2>
+  <p class="contact__row">
+    <span>טלפון</span>
+    <a class="ltr-num" href="tel:04-000-0000">04-000-0000</a>
+  </p>
+  <p class="contact__row">
+    <span>אימייל</span>
+    <a class="ltr-num" href="mailto:lehem@example.co.il">lehem@example.co.il</a>
+  </p>
+</footer>
+
+</body>
+</html>
