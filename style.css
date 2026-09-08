@@ -117,15 +117,12 @@ main {
   padding-bottom: 1.5rem;
 }
 
-.photo-placeholder {
+.photo-image {
+  display: block;
+  width: 100%;
   aspect-ratio: 4 / 3;
-  background: #d8d2c6;
+  object-fit: cover;
   border-radius: 18px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  color: #6b6152;
-  font-size: 0.9rem;
 }
 
 /* תפריט */
@@ -325,10 +322,6 @@ main {
 
   .delivery-details__row {
     border-top-color: #000;
-  }
-
-  .photo-placeholder {
-    display: none;
   }
 
   .form__submit {
