@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#3e3860">
+<title>קליטת חשבוניות · לחם ושמש</title>
+<link rel="stylesheet" href="invoices.css">
+</head>
+<body>
+
+<header class="brand">
+  <p class="brand__eyebrow">מערכת פנימית</p>
+  <p class="brand__name">לחם ושמש</p>
+  <h1 class="brand__title">קליטת חשבוניות</h1>
+</header>
+
+<div class="score" aria-hidden="true"></div>
+
+<main class="app">
+
+  <section class="screen" id="screen-upload" aria-labelledby="upload-title">
+    <h2 id="upload-title" class="screen__title">חשבונית חדשה</h2>
+    <p class="screen__lead">מצלמים או בוחרים קובץ. הספק, התאריך והסכומים נרשמים לבד בגיליון, והקובץ נשמר בדרייב בתיקייה של החודש.</p>
+
+    <div class="pickers">
+      <label class="picker picker--camera" id="camera-picker" hidden>
+        <input class="picker__input" type="file" id="camera-input" accept="image/*" capture="environment">
+        <span class="picker__label">צילום חשבונית</span>
+        <span class="picker__hint">פותח את המצלמה</span>
+      </label>
+      <label class="picker">
+        <input class="picker__input" type="file" id="file-input" accept="image/*,application/pdf">
+        <span class="picker__label">בחירת קובץ</span>
+        <span class="picker__hint">תמונה או PDF</span>
+      </label>
+    </div>
+
+    <div class="selected" id="selected" hidden>
+      <img class="selected__thumb" id="selected-thumb" alt="" hidden>
+      <div class="selected__meta">
+        <p class="selected__name" id="selected-name"></p>
+        <p class="selected__size" id="selected-size"></p>
+      </div>
+      <button type="button" class="link-button" id="clear-file">החלפה</button>
+    </div>
+
+    <p class="form-error" id="upload-error" role="alert" hidden></p>
+
+    <button type="button" class="button" id="submit-button" disabled>שליחה לעיבוד</button>
+  </section>
+
+  <section class="screen" id="screen-wait" aria-labelledby="wait-title" hidden>
+    <div class="dawn">
+      <h2 id="wait-title" class="dawn__title">מעבדים את החשבונית</h2>
+      <p class="dawn__lead">אפשר להשאיר את הדף פתוח. זה לוקח בדרך כלל פחות מדקה.</p>
+      <ol class="steps" id="steps" aria-live="polite">
+        <li class="step" data-stage="upload">הקובץ נשלח</li>
+        <li class="step" data-stage="queued">בתור לקריאה</li>
+        <li class="step" data-stage="parsing">קוראים את החשבונית</li>
+        <li class="step" data-stage="extracting">מחלצים ספק, תאריך וסכומים</li>
+        <li class="step" data-stage="saving">שומרים בדרייב ובגיליון</li>
+      </ol>
+      <p class="dawn__elapsed">זמן שעבר <span class="ltr-num" id="elapsed">0:00</span></p>
+    </div>
+  </section>
+
+  <section class="screen" id="screen-success" aria-labelledby="success-title" hidden>
+    <p class="badge badge--ok">נקלטה</p>
+    <h2 id="success-title" class="screen__title">החשבונית נרשמה בגיליון</h2>
+    <p class="screen__lead">אלה הפרטים שנכנסו. כדאי להשוות לנייר.</p>
+    <dl class="fields" id="result-fields"></dl>
+    <p class="check" id="result-check"></p>
+    <p class="drive-link" id="result-drive-wrap" hidden>
+      <a id="result-drive" target="_blank" rel="noopener">פתיחת הקובץ בדרייב</a>
+    </p>
+    <button type="button" class="button" data-action="restart">חשבונית נוספת</button>
+  </section>
+
+  <section class="screen" id="screen-failed" aria-labelledby="failed-title" hidden>
+    <p class="badge badge--fail">לא נקלטה</p>
+    <h2 id="failed-title" class="screen__title">החשבונית לא נרשמה</h2>
+    <p class="screen__lead" id="failed-message"></p>
+    <p class="note">נשלח מייל עם הפרטים. אפשר לנסות שוב עם צילום ברור יותר, או להקליד את החשבונית הזו ידנית.</p>
+    <button type="button" class="button" data-action="restart">ניסיון נוסף</button>
+  </section>
+
+  <section class="screen" id="screen-timeout" aria-labelledby="timeout-title" hidden>
+    <p class="badge badge--wait">עדיין בעבודה</p>
+    <h2 id="timeout-title" class="screen__title">העיבוד לא הסתיים בזמן</h2>
+    <p class="screen__lead">החשבונית לא אבדה. העבודה ממשיכה ברקע, וכשתסתיים יגיע מייל והשורה תופיע בגיליון. אין צורך לשלוח אותה שוב.</p>
+    <div class="actions">
+      <button type="button" class="button" id="resume-button">לבדוק שוב</button>
+      <button type="button" class="button button--quiet" data-action="restart">חשבונית אחרת</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="app.js"></script>
+</body>
+</html>
