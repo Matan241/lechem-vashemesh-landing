@@ -148,7 +148,7 @@
       const response = await fetch(SUBMIT_URL, { method: 'POST', body, signal: controller.signal });
       const data = await response.json().catch(() => ({}));
       if (!response.ok || !data.ok || !data.jobId) {
-        finishFailed(data.error || 'השרת לא קיבל את הקובץ.');
+        finishFailed(data.error || 'השרת לא קיבל את הקובץ.', { reachedServer: Boolean(data.error) });
         return;
       }
       state.jobId = data.jobId;
@@ -158,7 +158,7 @@
     } catch (err) {
       finishFailed(err.name === 'AbortError'
         ? 'השליחה לקחה יותר מדי זמן. בדקו את החיבור ונסו שוב.'
-        : 'לא הצלחנו להתחבר לשרת. בדקו את החיבור לאינטרנט ונסו שוב.');
+        : 'לא הצלחנו להתחבר לשרת. בדקו את החיבור לאינטרנט ונסו שוב.', { reachedServer: false });
     } finally {
       clearTimeout(abortTimer);
     }
@@ -251,9 +251,12 @@
     showScreen('success');
   }
 
-  function finishFailed(message) {
+  function finishFailed(message, { reachedServer = true } = {}) {
     stopElapsed();
     $('failed-message').textContent = message;
+    $('failed-note').textContent = reachedServer
+      ? 'נשלח מייל עם הפרטים. אפשר לנסות שוב עם צילום ברור יותר, או להקליד את החשבונית הזו ידנית.'
+      : 'החשבונית לא הגיעה למערכת, ולכן גם לא נשלח מייל. כדאי לנסות שוב בעוד רגע.';
     showScreen('failed');
   }
 
