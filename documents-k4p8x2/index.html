@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#3e3860">
+<title>מסמכי הבוט · לחם ושמש</title>
+<link rel="stylesheet" href="documents.css">
+</head>
+<body>
+
+<header class="brand">
+  <p class="brand__eyebrow">מערכת פנימית</p>
+  <p class="brand__name">לחם ושמש</p>
+  <h1 class="brand__title">המסמכים של הבוט</h1>
+</header>
+
+<div class="score" aria-hidden="true"></div>
+
+<main class="app">
+
+  <!-- כניסה עם קוד מנהל -->
+  <section class="screen" id="screen-gate" aria-labelledby="gate-title" hidden>
+    <h2 id="gate-title" class="screen__title">כניסה</h2>
+    <p class="screen__lead">הקוד נשמר רק בלשונית הזאת, ונמחק כשסוגרים אותה.</p>
+    <form class="gate" id="gate-form" novalidate>
+      <label class="field">
+        <span class="field__label">קוד מנהל</span>
+        <input class="field__input" type="password" id="gate-code" autocomplete="current-password" required>
+      </label>
+      <p class="form-error" id="gate-error" role="alert" hidden></p>
+      <button type="submit" class="button" id="gate-button">כניסה</button>
+    </form>
+  </section>
+
+  <!-- המסך הראשי: מה פעיל, והעלאה -->
+  <section class="screen" id="screen-main" aria-labelledby="known-title" hidden>
+    <div class="known">
+      <h2 id="known-title" class="screen__title">לפי מה הבוט עונה עכשיו</h2>
+      <ul class="docs" id="active-docs" aria-live="polite"></ul>
+      <p class="form-error" id="docs-error" role="alert" hidden></p>
+    </div>
+
+    <div class="upload">
+      <h2 class="screen__title">גרסה חדשה של מסמך</h2>
+      <p class="screen__lead">הגרסה הקודמת ממשיכה לענות ללקוחות עד שהחדשה נכנסה במלואה ונבדקה. אם משהו נכשל בדרך, היא נשארת.</p>
+
+      <fieldset class="choice">
+        <legend class="field__label">איזה מסמך מחליפים</legend>
+        <label class="choice__option">
+          <input type="radio" name="docKey" value="pricelist" checked>
+          <span>מחירון</span>
+        </label>
+        <label class="choice__option">
+          <input type="radio" name="docKey" value="delivery-zones">
+          <span>אזורי משלוח</span>
+        </label>
+      </fieldset>
+
+      <label class="picker">
+        <input class="picker__input" type="file" id="file-input" accept=".pdf,.docx,.txt,.md,application/pdf,text/plain,text/markdown,application/vnd.openxmlformats-officedocument.wordprocessingml.document">
+        <span class="picker__label">בחירת קובץ</span>
+        <span class="picker__hint">PDF, Word, TXT או MD</span>
+      </label>
+
+      <div class="selected" id="selected" hidden>
+        <div class="selected__meta">
+          <p class="selected__name" id="selected-name"></p>
+          <p class="selected__size" id="selected-size"></p>
+        </div>
+        <button type="button" class="link-button" id="clear-file">החלפה</button>
+      </div>
+
+      <p class="simulate" id="simulate-tag" hidden>מצב הדמיה: ההעלאה הזאת תיכשל בכוונה אחרי שמירת החתיכות, כדי לבדוק שהגרסה הקודמת נשארת.</p>
+      <p class="form-error" id="upload-error" role="alert" hidden></p>
+
+      <button type="button" class="button" id="submit-button" disabled>העלאה והחלפה</button>
+    </div>
+
+    <button type="button" class="link-button link-button--end" id="logout">יציאה</button>
+  </section>
+
+  <!-- בזמן ההעלאה: שני מסלולים -->
+  <section class="screen" id="screen-progress" aria-labelledby="progress-title" hidden>
+    <h2 id="progress-title" class="screen__title">מחליפים את <span id="progress-doc"></span></h2>
+
+    <div class="lanes">
+      <div class="lane lane--live">
+        <p class="lane__label">הבוט עונה עכשיו לפי</p>
+        <p class="lane__file" id="live-file"></p>
+        <p class="lane__meta" id="live-meta"></p>
+      </div>
+
+      <div class="dawn lane lane--new">
+        <p class="lane__label">הגרסה החדשה</p>
+        <p class="lane__file" id="new-file"></p>
+        <p class="dawn__sending" id="sending">שולחים את הקובץ למערכת.</p>
+        <ol class="steps" id="progress-steps" aria-live="polite"></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- הוחלף -->
+  <section class="screen" id="screen-done" aria-labelledby="done-title" hidden>
+    <p class="badge badge--ok">הוחלף</p>
+    <h2 id="done-title" class="screen__title"></h2>
+    <p class="screen__lead" id="done-lead"></p>
+    <ul class="docs" id="done-docs"></ul>
+    <button type="button" class="button" data-action="restart">חזרה למסמכים</button>
+  </section>
+
+  <!-- נכשל -->
+  <section class="screen" id="screen-failed" aria-labelledby="failed-title" hidden>
+    <p class="badge badge--fail">לא הוחלף</p>
+    <h2 id="failed-title" class="screen__title"></h2>
+    <p class="screen__lead" id="failed-reason"></p>
+    <div class="keep" id="failed-keep"></div>
+    <ol class="steps steps--paper" id="failed-steps"></ol>
+    <button type="button" class="button" data-action="restart">חזרה למסמכים</button>
+  </section>
+
+  <!-- עדיין בעבודה -->
+  <section class="screen" id="screen-timeout" aria-labelledby="timeout-title" hidden>
+    <p class="badge badge--wait">עדיין בעבודה</p>
+    <h2 id="timeout-title" class="screen__title">ההעלאה לא הסתיימה אחרי 3 דקות</h2>
+    <p class="screen__lead">המערכת לא דיווחה על סיום. עד שההחלפה מסתיימת, הבוט ממשיך לענות לפי הגרסה הקודמת.</p>
+    <div class="actions">
+      <button type="button" class="button" id="resume-button">לבדוק שוב</button>
+      <button type="button" class="button button--quiet" data-action="restart">חזרה למסמכים</button>
+    </div>
+  </section>
+
+</main>
+
+<script src="documents.js"></script>
+</body>
+</html>
