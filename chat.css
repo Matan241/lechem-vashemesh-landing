@@ -1,0 +1,59 @@
+/* הבוט באתר: הווידג'ט הרשמי של n8n, בצבעים של לחם ושמש ומימין לשמאל */
+:root {
+  --chat--color-primary: #d98e2b;
+  --chat--color-primary-shade-50: #c47e22;
+  --chat--color-primary-shade-100: #a96b1c;
+  --chat--color-secondary: #3e3860;
+  --chat--color-secondary-shade-50: #322d4f;
+  --chat--color-white: #ffffff;
+  --chat--color-light: #fbf6ec;
+  --chat--color-light-shade-50: #f1e6d2;
+  --chat--color-light-shade-100: #e2d4bb;
+  --chat--color-dark: #3e3860;
+  --chat--color-typing: #6b5f4d;
+
+  --chat--font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Arial, sans-serif;
+  --chat--border-radius: 12px;
+  --chat--window--width: 380px;
+  --chat--window--height: 560px;
+  --chat--window--border: 1px solid rgba(43, 29, 18, 0.14);
+
+  --chat--header--background: #3e3860;
+  --chat--header--color: #fbf6ec;
+  --chat--heading--font-size: 1.25em;
+  --chat--subtitle--font-size: 0.85em;
+  --chat--subtitle--line-height: 1.5;
+
+  --chat--message--font-size: 0.95rem;
+  --chat--message--bot--background: #ffffff;
+  --chat--message--bot--color: #2b1d12;
+  --chat--message--user--background: #3e3860;
+  --chat--message--user--color: #ffffff;
+
+  --chat--toggle--background: #d98e2b;
+  --chat--toggle--hover--background: #c47e22;
+  --chat--toggle--active--background: #a96b1c;
+  --chat--toggle--color: #2b1d12;
+}
+
+/* טקסט בעברית: הכיוון של החלון, ההודעות ושדה הקלט */
+.chat-window,
+.chat-layout,
+.chat-header,
+.chat-message,
+.chat-inputs textarea {
+  direction: rtl;
+  text-align: right;
+}
+
+.chat-header h1 {
+  font-family: Georgia, "Times New Roman", serif;
+}
+
+/* בטלפון החלון לא יוצא מהמסך */
+@media (max-width: 480px) {
+  :root {
+    --chat--window--width: calc(100vw - 2rem);
+    --chat--window--height: min(560px, calc(100vh - 7rem));
+  }
+}

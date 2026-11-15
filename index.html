@@ -5,6 +5,8 @@
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>לחם ושמש, מאפייה בהדר, חיפה</title>
 <link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@n8n/chat@1.45.3/dist/style.css">
+<link rel="stylesheet" href="chat.css">
 </head>
 <body>
 
@@ -137,6 +139,33 @@
     <a class="ltr-num" href="mailto:lehem@example.co.il">lehem@example.co.il</a>
   </p>
 </footer>
+
+<!-- הבוט: עונה לפי המחירון ומסמך אזורי המשלוח הפעילים (n8n + Supabase) -->
+<script type="module">
+  import { createChat } from 'https://cdn.jsdelivr.net/npm/@n8n/chat@1.45.3/dist/chat.bundle.es.js';
+
+  createChat({
+    webhookUrl: 'https://superagent92.app.n8n.cloud/webhook/795a028b-0a82-4e0f-b951-15ec2a0986d8/chat',
+    mode: 'window',
+    showWelcomeScreen: false,
+    loadPreviousSession: true,
+    defaultLanguage: 'en',
+    initialMessages: [
+      'שלום! אני הבוט של לחם ושמש 🥖',
+      'אפשר לשאול אותי על אזורי משלוח, דמי משלוח, מחירים, ועד מתי מזמינים.',
+    ],
+    i18n: {
+      en: {
+        title: 'שאלות על משלוחים ומחירים',
+        subtitle: 'התשובות לפי המחירון ואזורי המשלוח העדכניים. לכל דבר אחר: 04-000-0000',
+        footer: '',
+        getStarted: 'שיחה חדשה',
+        inputPlaceholder: 'כתבו שאלה...',
+        closeButtonTooltip: 'סגירה',
+      },
+    },
+  });
+</script>
 
 </body>
 </html>
